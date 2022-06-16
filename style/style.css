@@ -8,5 +8,5 @@
 .tile{
     height: 250px;
     width: 250px;
-
+    touch-action: manipulation;
 }
