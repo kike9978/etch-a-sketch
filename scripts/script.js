@@ -9,15 +9,15 @@ for(let i = 0; i<16; i++){
 }
 
 const tiles = document.querySelectorAll(".tile");
-tiles.forEach(tile => tile.addEventListener("click", cambiaColor))
+tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
 
 
 function cambiaColor(e){
     e.target.style.backgroundColor = `rgb(${giveRandomColor()}, 
     ${giveRandomColor()}, ${giveRandomColor()})`;
-    console.log(e.target.style.backgroundColor);
 }
 
+// Cretes random rgba color
 function giveRandomColor(){
     const randomColor = Math.floor(Math.random() * 255);
     return randomColor;
