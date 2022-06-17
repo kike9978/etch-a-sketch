@@ -8,11 +8,14 @@ for(let i = 0; i<16; i++){
     container.appendChild(div);    
 }
 
+
 const tiles = document.querySelectorAll(".tile");
 tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
 
 
+
 function cambiaColor(e){
+
     e.target.style.backgroundColor = `rgb(${giveRandomColor()}, 
     ${giveRandomColor()}, ${giveRandomColor()})`;
 }
