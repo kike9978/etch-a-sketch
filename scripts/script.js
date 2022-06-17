@@ -5,6 +5,7 @@ const textoLado = document.querySelector("[data-text=lado]");
 const slider = document.querySelector("[data-input=slider]");
 const inputLado = document.querySelector("[data-input=valor-lado]");
 const btnClear = document.querySelector("[data-btn=grid-clear]");
+const inputColor = document.querySelector("[data-input=color]")
 
 
 // Create a modular flex square grid that can change the cuantity of 
@@ -13,6 +14,9 @@ const btnClear = document.querySelector("[data-btn=grid-clear]");
 let lado = slider.value;
 textoLado.textContent=lado;
 
+let color = inputColor.value;
+
+
 
 
 slider.addEventListener("input", () => textoLado.textContent = slider.value)
@@ -20,6 +24,8 @@ slider.addEventListener("input", () => textoLado.textContent = slider.value)
 slider.addEventListener("mouseup", cambiaTamanoDeGrid)
 
 inputLado.addEventListener("input", () => console.log(inputLado.value));
+
+inputColor.addEventListener("input", escogeColor);
 
 function llenaGrid(){
     const tamañoDeGrid = lado * lado;
@@ -62,13 +68,20 @@ function cambiaTamanoDeGrid(){
 
 function cambiaColor(e){
 
-    e.target.style.backgroundColor = `rgb(${giveRandomColor()}, 
-    ${giveRandomColor()}, ${giveRandomColor()})`;
+    e.target.style.backgroundColor = color;
+    // e.target.style.backgroundColor = `rgb(${giveRandomColor()}, 
+    // ${giveRandomColor()}, ${giveRandomColor()})`;
 }
 
 btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.backgroundColor = "#fff"));
 
 
+
+function escogeColor(e){
+    color = e.target.value;
+    console.log(e.target.value);
+    return color;
+}
 
 // Creates random rgba color
 function giveRandomColor(){
