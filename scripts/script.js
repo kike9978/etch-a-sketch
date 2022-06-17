@@ -2,13 +2,23 @@ const container = document.querySelector(".container");
 const div = document.createElement("div");
 const btnGridsize = document.querySelector("[data-btn=grid-size]");
 const textoLado = document.querySelector("[data-text=lado]");
+const slider = document.querySelector("[data-input=slider]");
+const inputLado = document.querySelector("[data-input=valor-lado]");
 
 
 // Create a modular flex square grid that can change the cuantity of 
 // elements in the grid without changing the size of its container
 
-let lado = 4;
+let lado = slider.value;
 textoLado.textContent=lado;
+
+
+
+slider.addEventListener("input", () => textoLado.textContent = slider.value)
+
+slider.addEventListener("mouseup", cambiaTamanoDeGrid)
+
+inputLado.addEventListener("input", () => console.log(inputLado.value));
 
 function llenaGrid(){
     const tamañoDeGrid = lado * lado;
@@ -24,23 +34,14 @@ llenaGrid();
 
 let tiles = document.querySelectorAll(".tile");
 tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
-tiles.forEach((tile) => tile.addEventListener("touchmove", cambiaColor))
 
-// Problema con el current laado
+
+
 
 function cambiaTamanoDeGrid(){
     const currentLado = lado;
-    lado = parseInt(prompt("¿Que longitud quieres para tu lado?", 4));
-    console.log(lado);
-    if(isNaN(lado) || lado === currentLado){
-        lado = currentLado;
-        console.log(`has entrado al primer if`);
-        return;
-    }
-    if(!lado || (lado<1) || (lado>100)){
-        lado = currentLado;
-        alert("Escoge un número del 1 al 100")
-        cambiaTamanoDeGrid();
+    lado = this.value;
+    if (lado === currentLado){
         return;
     }
     container.innerHTML="";
@@ -48,11 +49,13 @@ function cambiaTamanoDeGrid(){
     // const basis = `${parseFloat(100/lado)}%`;
     textoLado.textContent=lado;
 
+    
+
     llenaGrid();
 
     tiles = document.querySelectorAll(".tile");
     tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
-    tiles.forEach((tile) => tile.addEventListener("touchmove", cambiaColor))
+
     tiles.forEach(tile => tile.style.flexBasis = basis);
 }
 
