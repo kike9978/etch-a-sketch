@@ -4,6 +4,7 @@ const btnGridsize = document.querySelector("[data-btn=grid-size]");
 const textoLado = document.querySelector("[data-text=lado]");
 const slider = document.querySelector("[data-input=slider]");
 const inputLado = document.querySelector("[data-input=valor-lado]");
+const btnClear = document.querySelector("[data-btn=grid-clear]");
 
 
 // Create a modular flex square grid that can change the cuantity of 
@@ -65,7 +66,11 @@ function cambiaColor(e){
     ${giveRandomColor()}, ${giveRandomColor()})`;
 }
 
-// Cretes random rgba color
+btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.backgroundColor = "#fff"));
+
+
+
+// Creates random rgba color
 function giveRandomColor(){
     const randomColor = Math.floor(Math.random() * 255);
     return randomColor;
