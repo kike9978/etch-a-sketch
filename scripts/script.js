@@ -24,6 +24,7 @@ llenaGrid();
 
 let tiles = document.querySelectorAll(".tile");
 tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
+tiles.forEach((tile) => tile.addEventListener("touchmove", cambiaColor))
 
 // Problema con el current laado
 
@@ -51,6 +52,7 @@ function cambiaTamanoDeGrid(){
 
     tiles = document.querySelectorAll(".tile");
     tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
+    tiles.forEach((tile) => tile.addEventListener("touchmove", cambiaColor))
     tiles.forEach(tile => tile.style.flexBasis = basis);
 }
 
