@@ -8,6 +8,9 @@ const inputColor = document.querySelector("[data-input=color]")
 const btnRainbow = document.querySelector("[data-btn=rainbow]")
 const btnEraser = document.querySelector("[data-btn=eraser]");
 const btnDarken = document.querySelector("[data-btn=darken]");
+const btnLighten = document.querySelector("[data-btn=lighten]");
+
+const white = "rgb(255,255,255)";
 
 
 
@@ -20,8 +23,15 @@ textoLado.textContent = lado;
 let color = inputColor.value;
 let rainbowActive = false;
 let darkenActive = false;
+let lightenActive = false;
 
 
+function falsifie(){
+    darkenActive = false;
+    lightenActive = false;
+    rainbowActive = false;
+
+}
 
 slider.addEventListener("input", () => textoLado.textContent = slider.value)
 
@@ -35,12 +45,16 @@ btnRainbow.addEventListener("click", () => rainbowActive = true);
 
 btnEraser.addEventListener("click", () => {
     rainbowActive = false;
-    color = "white"
+    color = white;
 });
 
 btnDarken.addEventListener("click", () => {
-    darkenActive = true;
-    rainbowActive = false;
+   falsifie();
+   darkenActive = true;
+})
+btnLighten.addEventListener("click", () => {
+    falsifie();
+    lightenActive = true;
 })
 
 
@@ -86,22 +100,32 @@ function cambiaTamanoDeGrid() {
 
 function cambiaColor(e) {
 
-    if (!rainbowActive && !darkenActive) {
+    if (!rainbowActive && !darkenActive && !lightenActive){
         e.target.style.backgroundColor = color;
 
 
         return;
+    }
+
+    if (!rainbowActive && !lightenActive) {
+        //  Experimentos
+        let divColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
+        let arrayRapid = divColor.split(",");
+        e.target.style.backgroundColor = `rgb(${arrayRapid[0]-20}, 
+    ${arrayRapid[1] - 20}, ${arrayRapid[2]-20})`;
+
+        return;
+
+        // Acaban experimentos
     }
     if (!rainbowActive) {
         //  Experimentos
         let divColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
         let arrayRapid = divColor.split(",");
 
-        console.log(divColor);
-        console.log(arrayRapid);
-        e.target.style.backgroundColor = `rgb(${arrayRapid[0]-20}, 
-    ${arrayRapid[1] - 20}, ${arrayRapid[2]-20})`;
-
+        e.target.style.backgroundColor = `rgb(${arrayRapid[0]+20}, 
+            ${arrayRapid[1]+20}, ${arrayRapid[2]+20})`;
+            console.log(e.target.style.backgroundColor);
         return;
 
         // Acaban experimentos
@@ -123,6 +147,7 @@ btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.back
 function escogeColor(e) {
     rainbowActive = false;
     darkenActive = false;
+    lightenActive = false;
     color = e.target.value;
     console.log(e.target.value);
     return color;

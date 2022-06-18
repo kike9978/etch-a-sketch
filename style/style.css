@@ -19,6 +19,7 @@ body{
     border-width: 1px;
 }
 .tile{
+    background-attachment: rgb(255,255,255);
     flex-basis: 25%;
     width: 100px;
     height: auto;
