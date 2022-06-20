@@ -26,7 +26,7 @@ let darkenActive = false;
 let lightenActive = false;
 
 
-function falsifie(){
+function falsifieColorModes() {
     darkenActive = false;
     lightenActive = false;
     rainbowActive = false;
@@ -44,16 +44,16 @@ inputColor.addEventListener("input", escogeColor);
 btnRainbow.addEventListener("click", () => rainbowActive = true);
 
 btnEraser.addEventListener("click", () => {
-    rainbowActive = false;
+    falsifieColorModes();
     color = white;
 });
 
 btnDarken.addEventListener("click", () => {
-   falsifie();
-   darkenActive = true;
+    falsifieColorModes();
+    darkenActive = true;
 })
 btnLighten.addEventListener("click", () => {
-    falsifie();
+    falsifieColorModes();
     lightenActive = true;
 })
 
@@ -64,6 +64,7 @@ function llenaGrid() {
     for (let i = 0; i < tamañoDeGrid; i++) {
         const div = document.createElement("div");
         div.classList = "tile";
+        div.style.backgroundColor= white;
         container.appendChild(div);
     }
 }
@@ -100,7 +101,7 @@ function cambiaTamanoDeGrid() {
 
 function cambiaColor(e) {
 
-    if (!rainbowActive && !darkenActive && !lightenActive){
+    if (!rainbowActive && !darkenActive && !lightenActive) {
         e.target.style.backgroundColor = color;
 
 
@@ -109,23 +110,28 @@ function cambiaColor(e) {
 
     if (!rainbowActive && !lightenActive) {
         //  Experimentos
-        let divColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
-        let arrayRapid = divColor.split(",");
-        e.target.style.backgroundColor = `rgb(${arrayRapid[0]-20}, 
-    ${arrayRapid[1] - 20}, ${arrayRapid[2]-20})`;
+
+        let str_rgbValuesCurrentColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
+        let array_rgbValuesCurrentColor = str_rgbValuesCurrentColor.split(",");
+        e.target.style.backgroundColor = `rgb(${array_rgbValuesCurrentColor[0] - 20}, 
+            ${array_rgbValuesCurrentColor[1] - 20}, ${array_rgbValuesCurrentColor[2] - 20})`;
+
 
         return;
+
 
         // Acaban experimentos
     }
     if (!rainbowActive) {
         //  Experimentos
-        let divColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
-        let arrayRapid = divColor.split(",");
 
-        e.target.style.backgroundColor = `rgb(${arrayRapid[0]+20}, 
-            ${arrayRapid[1]+20}, ${arrayRapid[2]+20})`;
-            console.log(e.target.style.backgroundColor);
+        let str_rgbValuesCurrentColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
+        let array_rgbValuesCurrentColor = str_rgbValuesCurrentColor.split(",").map(rgbValue => parseFloat(rgbValue));
+
+        e.target.style.backgroundColor = `rgb(${array_rgbValuesCurrentColor[0] + 20}, 
+                ${array_rgbValuesCurrentColor[1] + 20}, ${array_rgbValuesCurrentColor[2] + 20})`;
+
+
         return;
 
         // Acaban experimentos
@@ -136,8 +142,8 @@ function cambiaColor(e) {
 }
 
 
-function darkenColor(e){
-    darkenActive= true;
+function darkenColor(e) {
+    darkenActive = true;
 }
 
 btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.backgroundColor = "#fff"));
