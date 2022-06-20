@@ -7,6 +7,7 @@ const btnClear = document.querySelector("[data-btn=grid-clear]");
 const inputColor = document.querySelector("[data-input=color]")
 const btnRainbow = document.querySelector("[data-btn=rainbow]")
 const btnEraser = document.querySelector("[data-btn=eraser]");
+const btnBrush = document.querySelector("[data-btn=brush]");
 const btnDarken = document.querySelector("[data-btn=darken]");
 const btnLighten = document.querySelector("[data-btn=lighten]");
 
@@ -52,6 +53,10 @@ btnRainbow.addEventListener("click", () => rainbowActive = true);
 btnEraser.addEventListener("click", () => {
     falsifieColorModes();
     color = white;
+});
+btnBrush.addEventListener("click", () => {
+    falsifieColorModes();
+    color = inputColor.value;
 });
 
 btnDarken.addEventListener("click", () => {
