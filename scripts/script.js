@@ -2,7 +2,7 @@ const container = document.querySelector(".container");
 const div = document.createElement("div");
 const textoLado = document.querySelector("[data-text=lado]");
 const slider = document.querySelector("[data-input=slider]");
-const inputLado = document.querySelector("[data-input=valor-lado]");
+
 const btnClear = document.querySelector("[data-btn=grid-clear]");
 const inputColor = document.querySelector("[data-input=color]")
 const btnRainbow = document.querySelector("[data-btn=rainbow]")
@@ -43,7 +43,7 @@ slider.addEventListener("input", () => textoLado.textContent = slider.value)
 slider.addEventListener("mouseup", cambiaTamanoDeGrid)
 
 
-inputLado.addEventListener("input", () => console.log(inputLado.value));
+
 
 inputColor.addEventListener("input", escogeColor);
 
