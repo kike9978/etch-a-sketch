@@ -26,6 +26,9 @@ let darkenActive = false;
 let lightenActive = false;
 
 
+window.addEventListener("mousedown", () => clickActive = true);
+window.addEventListener("mouseup", () => clickActive = false);
+
 function falsifieColorModes() {
     darkenActive = false;
     lightenActive = false;
@@ -33,9 +36,12 @@ function falsifieColorModes() {
 
 }
 
+// Grid size slider events
+
 slider.addEventListener("input", () => textoLado.textContent = slider.value)
 
 slider.addEventListener("mouseup", cambiaTamanoDeGrid)
+
 
 inputLado.addEventListener("input", () => console.log(inputLado.value));
 
@@ -64,16 +70,20 @@ function llenaGrid() {
     for (let i = 0; i < tamañoDeGrid; i++) {
         const div = document.createElement("div");
         div.classList = "tile";
-        div.style.backgroundColor= white;
+        div.style.backgroundColor = white;
         container.appendChild(div);
     }
 }
 llenaGrid();
 
 
+let clickActive = false
 
 let tiles = document.querySelectorAll(".tile");
-tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
+
+tiles.forEach((tile) => tile.addEventListener("mousedown", () => clickActive = true));
+tiles.forEach((tile) => tile.addEventListener("mousedown", paintDiv));
+tiles.forEach((tile) => tile.addEventListener("mouseover", paintDiv));
 
 
 
@@ -94,12 +104,20 @@ function cambiaTamanoDeGrid() {
     llenaGrid();
 
     tiles = document.querySelectorAll(".tile");
-    tiles.forEach((tile) => tile.addEventListener("mouseover", cambiaColor))
+    tiles.forEach((tile) => tile.addEventListener("mousedown", () => clickActive = true));
+    tiles.forEach((tile) => tile.addEventListener("mousedown", paintDiv));
+    tiles.forEach((tile) => tile.addEventListener("mouseover", paintDiv))
+
 
     tiles.forEach(tile => tile.style.flexBasis = basis);
 }
 
-function cambiaColor(e) {
+function paintDiv(e) {
+    console.log(clickActive);
+    if (!clickActive) {
+        return;
+    }
+    console.log(clickActive);
 
     if (!rainbowActive && !darkenActive && !lightenActive) {
         e.target.style.backgroundColor = color;
@@ -151,9 +169,7 @@ btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.back
 
 
 function escogeColor(e) {
-    rainbowActive = false;
-    darkenActive = false;
-    lightenActive = false;
+    falsifieColorModes();
     color = e.target.value;
     console.log(e.target.value);
     return color;
