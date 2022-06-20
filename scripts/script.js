@@ -18,7 +18,7 @@ const white = "rgb(255,255,255)";
 // elements in the grid without changing the size of its container
 
 let lado = slider.value;
-textoLado.textContent = lado;
+textoLado.textContent = `${lado} × ${lado}`;
 
 let color = inputColor.value;
 let rainbowActive = false;
@@ -38,7 +38,7 @@ function falsifieColorModes() {
 
 // Grid size slider events
 
-slider.addEventListener("input", () => textoLado.textContent = slider.value)
+slider.addEventListener("input", () => textoLado.textContent = `${slider.value} × ${slider.value}`)
 
 slider.addEventListener("mouseup", cambiaTamanoDeGrid)
 
@@ -57,6 +57,7 @@ btnEraser.addEventListener("click", () => {
 btnDarken.addEventListener("click", () => {
     falsifieColorModes();
     darkenActive = true;
+    styleButtons();
 })
 btnLighten.addEventListener("click", () => {
     falsifieColorModes();
@@ -75,6 +76,15 @@ function llenaGrid() {
     }
 }
 llenaGrid();
+
+
+function styleButtons(){
+    if(darkenActive === true){
+        btnDarken.classList += " active";
+        return
+    }
+
+}
 
 
 let clickActive = false
@@ -97,7 +107,7 @@ function cambiaTamanoDeGrid() {
     container.innerHTML = "";
     const basis = `${Math.floor((100 / lado) * 100) / 100}%`;
     // const basis = `${parseFloat(100/lado)}%`;
-    textoLado.textContent = lado;
+    textoLado.textContent = `${lado} × ${lado}`;
 
 
 
@@ -113,11 +123,11 @@ function cambiaTamanoDeGrid() {
 }
 
 function paintDiv(e) {
-    console.log(clickActive);
+
     if (!clickActive) {
         return;
     }
-    console.log(clickActive);
+
 
     if (!rainbowActive && !darkenActive && !lightenActive) {
         e.target.style.backgroundColor = color;
@@ -171,7 +181,7 @@ btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.back
 function escogeColor(e) {
     falsifieColorModes();
     color = e.target.value;
-    console.log(e.target.value);
+
     return color;
 }
 
@@ -180,4 +190,3 @@ function giveRandomColor() {
     const randomColor = Math.floor(Math.random() * 255);
     return randomColor;
 }
-
