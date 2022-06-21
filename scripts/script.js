@@ -10,7 +10,7 @@ const btnBrush = document.querySelector("[data-btn=brush]");
 const btnDarken = document.querySelector("[data-btn=darken]");
 const btnLighten = document.querySelector("[data-btn=lighten]");
 
-const white = "rgb(255,255,255)";
+const bgColor = "rgb(255,255,255)";
 
 let lado = slider.value;
 textoLado.textContent = `${lado} × ${lado}`;
@@ -26,6 +26,8 @@ let brushActive = true;
 window.addEventListener("mousedown", () => clickActive = true);
 window.addEventListener("mouseup", () => clickActive = false);
 
+
+// Call this function whenever use button options
 function falsifieColorModes() {
     resetActiveButtonStyle();
     
@@ -39,7 +41,6 @@ function falsifieColorModes() {
 }
 
 // Grid size slider events
-
 slider.addEventListener("input", () => textoLado.textContent = `${slider.value} × ${slider.value}`);
 
 slider.addEventListener("mouseup", cambiaTamanoDeGrid);
@@ -55,7 +56,7 @@ btnRainbow.addEventListener("click", () => {
 
 btnEraser.addEventListener("click", () => {
     falsifieColorModes();
-    color = white;
+    color = bgColor;
     eraserActive = true;
     styleButtons();
 });
@@ -84,7 +85,7 @@ function llenaGrid() {
     for (let i = 0; i < tamañoDeGrid; i++) {
         const div = document.createElement("div");
         div.classList = "tile";
-        div.style.backgroundColor = white;
+        div.style.backgroundColor = bgColor;
         board.appendChild(div);
     }
 }

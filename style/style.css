@@ -115,7 +115,7 @@ button img {
 }
 
 @media (max-width: 650px) {
-    .title {
+    .h1 {
         font-size: 50px;
     }
 
