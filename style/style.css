@@ -7,8 +7,6 @@
     font-family: "Montserrat", sans-serif;
 }
 
-
-
 .main{
     height: 100vh;
     display: flex;
@@ -26,7 +24,6 @@ h1 {
 
 /* Board */
 .board {
-
     width: 500px;
     height: 500px;
     display: flex;
@@ -111,7 +108,7 @@ button img {
         margin-bottom: -4px;
     }
 
-    .grid {
+    .board {
         width: 400px;
         height: 400px;
     }
@@ -123,11 +120,18 @@ button img {
     }
 
     .main {
-        margin-top: 200px;
+        margin-top: 50px;
         flex-direction: column-reverse;
+        align-items: center;
+    }
+    .main-game{
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .grid {
+    .board {
         width: 300px;
         height: 300px;
     }
