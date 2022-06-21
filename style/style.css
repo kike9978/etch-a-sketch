@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-
 *{
     box-sizing: border-box;
     padding: 0;
@@ -27,7 +26,6 @@ h1{
     display: flex;
     flex-wrap: wrap;
     box-shadow: 5px 4px 16px 3px #bcbcbc40;
-    
 }
 .tile{
     background-attachment: rgb(255,255,255);
@@ -49,8 +47,7 @@ h1{
     gap: 20px;
 }
 .menu p{
-    width: 70px;
-    text-align: left;
+
 }
 
 button{

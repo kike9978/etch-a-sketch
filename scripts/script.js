@@ -40,9 +40,10 @@ function falsifieColorModes() {
 
 // Grid size slider events
 
-slider.addEventListener("input", () => textoLado.textContent = `${slider.value} × ${slider.value}`)
+slider.addEventListener("input", () => textoLado.textContent = `${slider.value} × ${slider.value}`);
 
-slider.addEventListener("mouseup", cambiaTamanoDeGrid)
+slider.addEventListener("mouseup", cambiaTamanoDeGrid);
+slider.addEventListener("touchend", cambiaTamanoDeGrid);
 
 inputColor.addEventListener("input", escogeColor);
 
