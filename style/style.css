@@ -58,8 +58,14 @@ h1 {
 button {
     width: 175px;
     height: 50px;
+    border-color: #FF217E;
+    border-style: solid;
+    background-color: #7c7c7c00;
+    color: #FF217E;
+    border-radius: 5px;
     /* flex: 0; */
 }
+
 
 
 button img {
@@ -69,7 +75,10 @@ button img {
 
 .active {
     color: aliceblue;
-    background-color: rgb(133, 133, 133);
+    background-color: #FF217E;
+    color: white;
+    border-style: none;
+    stroke: white;
 }
 
 .slider {
@@ -79,7 +88,19 @@ button img {
 .tools {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
 }
+.tools button{
+
+    width: 50px;
+}
+
+.tools input{
+    width: 50px;
+}
+
 
 .eraser {
     width: 50px;

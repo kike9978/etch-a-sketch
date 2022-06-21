@@ -9,6 +9,9 @@ const btnEraser = document.querySelector("[data-btn=eraser]");
 const btnBrush = document.querySelector("[data-btn=brush]");
 const btnDarken = document.querySelector("[data-btn=darken]");
 const btnLighten = document.querySelector("[data-btn=lighten]");
+const imgBrush = document.querySelector("[data-img=paintbrush]");
+const imgEraser = document.querySelector("[data-img=eraser]");
+
 
 const bgColor = "rgb(255,255,255)";
 
@@ -59,6 +62,7 @@ btnEraser.addEventListener("click", () => {
     color = bgColor;
     eraserActive = true;
     styleButtons();
+    imgEraser.src="./img/eraser-active.svg";
 });
 btnBrush.addEventListener("click", () => {
     falsifieColorModes();
