@@ -1,2 +1,2 @@
 # Pixel-art
-Etch-a-sketch project for the Odin Project curriculum 
+Pixel art project for the Odin Project curriculum 

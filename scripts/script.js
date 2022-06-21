@@ -2,7 +2,6 @@ const container = document.querySelector(".container");
 const div = document.createElement("div");
 const textoLado = document.querySelector("[data-text=lado]");
 const slider = document.querySelector("[data-input=slider]");
-
 const btnClear = document.querySelector("[data-btn=grid-clear]");
 const inputColor = document.querySelector("[data-input=color]")
 const btnRainbow = document.querySelector("[data-btn=rainbow]")
@@ -25,16 +24,23 @@ let color = inputColor.value;
 let rainbowActive = false;
 let darkenActive = false;
 let lightenActive = false;
+let eraserActive = false;
+let brushActive = true;
 
 
 window.addEventListener("mousedown", () => clickActive = true);
 window.addEventListener("mouseup", () => clickActive = false);
 
 function falsifieColorModes() {
+    resetActiveButtonStyle();
+    
     darkenActive = false;
     lightenActive = false;
     rainbowActive = false;
-
+    eraserActive = false;
+    brushActive = false;
+    styleButtons();
+    
 }
 
 // Grid size slider events
@@ -48,15 +54,23 @@ slider.addEventListener("mouseup", cambiaTamanoDeGrid)
 
 inputColor.addEventListener("input", escogeColor);
 
-btnRainbow.addEventListener("click", () => rainbowActive = true);
+btnRainbow.addEventListener("click", () => {
+    falsifieColorModes();
+    rainbowActive = true;
+    styleButtons();
+});
 
 btnEraser.addEventListener("click", () => {
     falsifieColorModes();
     color = white;
+    eraserActive = true;
+    styleButtons();
 });
 btnBrush.addEventListener("click", () => {
     falsifieColorModes();
     color = inputColor.value;
+    brushActive = true;
+    styleButtons();
 });
 
 btnDarken.addEventListener("click", () => {
@@ -67,6 +81,7 @@ btnDarken.addEventListener("click", () => {
 btnLighten.addEventListener("click", () => {
     falsifieColorModes();
     lightenActive = true;
+    styleButtons();
 })
 
 
@@ -81,16 +96,42 @@ function llenaGrid() {
     }
 }
 llenaGrid();
-
+styleButtons();
 
 function styleButtons(){
     if(darkenActive === true){
+        console.log("darken está activado");
         btnDarken.classList += " active";
+        return
+    }
+    if(rainbowActive === true){
+        console.log(rainbowActive);
+        btnRainbow.classList += " active";
+        return
+    }
+    if(lightenActive === true){
+        btnLighten.classList += " active";
+        return
+    }
+    if(eraserActive === true){
+        btnEraser.classList += " active";
+        return
+    }
+    if(brushActive === true){
+        btnBrush.classList += " active";
         return
     }
 
 }
 
+function resetActiveButtonStyle(){
+    btnBrush.classList = "btn";
+    btnClear.classList = "btn";
+    btnDarken.classList = "btn";
+    btnEraser.classList = "btn";
+    btnLighten.classList = "btn";
+    btnRainbow.classList = "btn";
+}
 
 let clickActive = false
 
@@ -99,9 +140,6 @@ let tiles = document.querySelectorAll(".tile");
 tiles.forEach((tile) => tile.addEventListener("mousedown", () => clickActive = true));
 tiles.forEach((tile) => tile.addEventListener("mousedown", paintDiv));
 tiles.forEach((tile) => tile.addEventListener("mouseover", paintDiv));
-
-
-
 
 function cambiaTamanoDeGrid() {
     const currentLado = lado;
@@ -113,8 +151,6 @@ function cambiaTamanoDeGrid() {
     const basis = `${Math.floor((100 / lado) * 100) / 100}%`;
     // const basis = `${parseFloat(100/lado)}%`;
     textoLado.textContent = `${lado} × ${lado}`;
-
-
 
     llenaGrid();
 
@@ -132,56 +168,36 @@ function paintDiv(e) {
     if (!clickActive) {
         return;
     }
-
-
     if (!rainbowActive && !darkenActive && !lightenActive) {
         e.target.style.backgroundColor = color;
-
-
         return;
     }
 
     if (!rainbowActive && !lightenActive) {
-        //  Experimentos
-
         let str_rgbValuesCurrentColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
         let array_rgbValuesCurrentColor = str_rgbValuesCurrentColor.split(",");
         e.target.style.backgroundColor = `rgb(${array_rgbValuesCurrentColor[0] - 20}, 
-            ${array_rgbValuesCurrentColor[1] - 20}, ${array_rgbValuesCurrentColor[2] - 20})`;
-
-
+                ${array_rgbValuesCurrentColor[1] - 20}, ${array_rgbValuesCurrentColor[2] - 20})`;
         return;
-
-
-        // Acaban experimentos
     }
     if (!rainbowActive) {
-        //  Experimentos
-
         let str_rgbValuesCurrentColor = e.target.style.backgroundColor.replace(/[r/g/b/(/)]/g, "");
         let array_rgbValuesCurrentColor = str_rgbValuesCurrentColor.split(",").map(rgbValue => parseFloat(rgbValue));
 
         e.target.style.backgroundColor = `rgb(${array_rgbValuesCurrentColor[0] + 20}, 
                 ${array_rgbValuesCurrentColor[1] + 20}, ${array_rgbValuesCurrentColor[2] + 20})`;
-
-
         return;
-
-        // Acaban experimentos
     }
 
     e.target.style.backgroundColor = `rgb(${giveRandomColor()}, 
     ${giveRandomColor()}, ${giveRandomColor()})`;
 }
 
-
 function darkenColor(e) {
     darkenActive = true;
 }
 
 btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.backgroundColor = "#fff"));
-
-
 
 function escogeColor(e) {
     falsifieColorModes();
