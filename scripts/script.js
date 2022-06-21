@@ -12,11 +12,6 @@ const btnLighten = document.querySelector("[data-btn=lighten]");
 
 const white = "rgb(255,255,255)";
 
-
-
-// Create a modular flex square grid that can change the cuantity of 
-// elements in the grid without changing the size of its container
-
 let lado = slider.value;
 textoLado.textContent = `${lado} × ${lado}`;
 
@@ -48,9 +43,6 @@ function falsifieColorModes() {
 slider.addEventListener("input", () => textoLado.textContent = `${slider.value} × ${slider.value}`)
 
 slider.addEventListener("mouseup", cambiaTamanoDeGrid)
-
-
-
 
 inputColor.addEventListener("input", escogeColor);
 
@@ -95,6 +87,7 @@ function llenaGrid() {
         container.appendChild(div);
     }
 }
+
 llenaGrid();
 styleButtons();
 
@@ -201,6 +194,8 @@ btnClear.addEventListener("click", () => tiles.forEach((tile) => tile.style.back
 
 function escogeColor(e) {
     falsifieColorModes();
+    brushActive = true;
+    styleButtons();
     color = e.target.value;
 
     return color;

@@ -38,6 +38,7 @@ h1{
     border-style: solid;
     border-color: #7c7c7c11;
     border-width: 0.1px;
+    cursor: cell;
 }
 
 .menu{
