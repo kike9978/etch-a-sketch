@@ -25,6 +25,10 @@ let lightenActive = false;
 let eraserActive = false;
 let brushActive = true;
 
+const defaultImgBrush = imgBrush.src;
+const defaultImgEraser = imgEraser.src;
+imgBrush.src="./img/paintbrush-active.svg";
+
 
 window.addEventListener("mousedown", () => clickActive = true);
 window.addEventListener("mouseup", () => clickActive = false);
@@ -39,6 +43,10 @@ function falsifieColorModes() {
     rainbowActive = false;
     eraserActive = false;
     brushActive = false;
+
+    imgBrush.src = defaultImgBrush;
+    imgEraser.src = defaultImgEraser;
+
     styleButtons();
     
 }
@@ -69,6 +77,7 @@ btnBrush.addEventListener("click", () => {
     color = inputColor.value;
     brushActive = true;
     styleButtons();
+    imgBrush.src="./img/paintbrush-active.svg";
 });
 
 btnDarken.addEventListener("click", () => {
@@ -201,6 +210,7 @@ function escogeColor(e) {
     falsifieColorModes();
     brushActive = true;
     styleButtons();
+    imgBrush.src="./img/paintbrush-active.svg";
     color = e.target.value;
 
     return color;
