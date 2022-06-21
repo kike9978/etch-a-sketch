@@ -2,6 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pixel art</title>
         <link rel="stylesheet" href="./style/style.css">
         <script src="./scripts/script.js" defer></script>
@@ -9,25 +10,26 @@
 <body>
 
 
-    <div class="menu">
-        <p class="lado-texto" data-text="lado"></p>
-        <input type="range" min="1" max="100" value="4" class="slider" data-input="slider">
-        <input type="color" class="input-color" value="#ff0000" data-input="color">
-        <button class="btn" data-btn="rainbow">Modo arcoiris</button>
-        <button class="btn" data-btn="darken">Oscurecer</button>
-        <button class="btn" data-btn="lighten">Blanquear</button>
-        <button class="btn" data-btn="grid-clear">Limpiar tablero</button>
-        <div class="tools">
-            <button class="btn" data-btn="brush"><img src="./img/paintbrush.png" alt="paint brush icon"></button>
-            <button class="btn" data-btn="eraser"><img src="./img/eraser.png" alt="eraser icon"></button>
-        </div>
-
-        
-    </div>
     <div class="main">
-        <h1>Pixel art maker</h1>
-        <div class="container">
+        <div class="menu">
+            <p class="lado-texto" data-text="lado"></p>
+            <input type="range" min="1" max="100" value="4" class="slider" data-input="slider">
+            <input type="color" class="input-color" value="#ff0000" data-input="color">
+            <button class="btn" data-btn="rainbow">Modo arcoiris</button>
+            <button class="btn" data-btn="darken">Oscurecer</button>
+            <button class="btn" data-btn="lighten">Blanquear</button>
+            <button class="btn" data-btn="grid-clear">Limpiar tablero</button>
+            <div class="tools">
+                <button class="btn" data-btn="brush"><img src="./img/paintbrush.png" alt="paint brush icon"></button>
+                <button class="btn" data-btn="eraser"><img src="./img/eraser.png" alt="eraser icon"></button>
+            </div>
         
+        </div>
+        <div class="main-game">
+            <h1>Pixel art maker</h1>
+            <div class="board" data-div="board">
+        
+            </div>
         </div>
     </div>
     <!-- <a href="https://www.flaticon.com/free-icons/brush" title="brush icons">Brush icons created by Freepik - Flaticon</a> -->

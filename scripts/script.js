@@ -1,4 +1,4 @@
-const container = document.querySelector(".container");
+const board = document.querySelector("[data-div=board]");
 const div = document.createElement("div");
 const textoLado = document.querySelector("[data-text=lado]");
 const slider = document.querySelector("[data-input=slider]");
@@ -85,7 +85,7 @@ function llenaGrid() {
         const div = document.createElement("div");
         div.classList = "tile";
         div.style.backgroundColor = white;
-        container.appendChild(div);
+        board.appendChild(div);
     }
 }
 
@@ -94,12 +94,11 @@ styleButtons();
 
 function styleButtons(){
     if(darkenActive === true){
-        console.log("darken está activado");
         btnDarken.classList += " active";
         return
     }
     if(rainbowActive === true){
-        console.log(rainbowActive);
+
         btnRainbow.classList += " active";
         return
     }
@@ -141,7 +140,7 @@ function cambiaTamanoDeGrid() {
     if (lado === currentLado) {
         return;
     }
-    container.innerHTML = "";
+    board.innerHTML = "";
     const basis = `${Math.floor((100 / lado) * 100) / 100}%`;
     // const basis = `${parseFloat(100/lado)}%`;
     textoLado.textContent = `${lado} × ${lado}`;

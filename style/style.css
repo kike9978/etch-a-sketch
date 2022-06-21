@@ -1,80 +1,134 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: "Montserrat", sans-serif;
 }
-body{
+
+
+
+.main{
+    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     column-gap: 20px;
 }
-h1{
+
+h1 {
     font-family: "Montserrat", sans-serif;
     font-size: 48px;
     font-weight: 700;
 }
-.container{
-    
+
+/* Board */
+.board {
+
     width: 500px;
     height: 500px;
     display: flex;
     flex-wrap: wrap;
     box-shadow: 5px 4px 16px 3px #bcbcbc40;
 }
-.tile{
-    background-attachment: rgb(255,255,255);
+
+.tile {
+    background-attachment: rgb(255, 255, 255);
     flex-basis: 25%;
     width: 100px;
     height: auto;
-    touch-action: manipulation;
+    touch-action: none;
     border-style: solid;
     border-color: #7c7c7c11;
     border-width: 0.1px;
     cursor: cell;
 }
 
-.menu{
+/* Tool menu */
+
+.menu {
     width: 175px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     gap: 20px;
 }
-.menu p{
 
-}
+.menu p {}
 
-button{
+button {
     width: 175px;
     height: 50px;
     /* flex: 0; */
 }
 
 
-button img{
+button img {
     width: 15px;
     height: auto;
 }
 
-.active{
+.active {
     color: aliceblue;
     background-color: rgb(133, 133, 133);
 }
 
-.slider{
+.slider {
     background: aliceblue;
 }
-.tools
-{
+
+.tools {
     display: flex;
     flex-direction: row;
 }
-.eraser{
+
+.eraser {
     width: 50px;
+}
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1200px) {
+    .main{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 850px) {
+    .main {
+        gap: 50px;
+    }
+
+    .menu {
+        width: 150px;
+        gap: 16px;
+    }
+
+    .size-value {
+        margin-bottom: -4px;
+    }
+
+    .grid {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 650px) {
+    .title {
+        font-size: 50px;
+    }
+
+    .main {
+        margin-top: 200px;
+        flex-direction: column-reverse;
+    }
+
+    .grid {
+        width: 300px;
+        height: 300px;
+    }
 }
